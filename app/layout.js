@@ -13,26 +13,50 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className={styles.content}>
+        <div className={styles.contents}>
           <h1 className={styles.title}>나도 문화인</h1>
         </div>
         <header className={styles.header}>
           <div className={styles.navbar}>
-            <div>
+            <div className={styles.mainItemBox}>
               <div className={styles.navItem}>
                 <p>오늘의</p>
                 <p>공연/전시</p>
+              </div>
+              <div className={styles.navItem}>
+                <p>전체 일정</p>
+                <p>(달력)</p>
               </div>
               <div className={styles.navItem}>
                 <p>내 주변</p>
                 <p>공연/전시장</p>
               </div>
             </div>
-            <p>로그인</p>
+            <div className={styles.loginBox}>
+              <p>로그인</p>
+              <p>회원가입</p>
+            </div>
           </div>
         </header>
-        <div className={styles.content}>{children}</div>
-        <footer className={styles.footer}></footer>
+        <div className={styles.contents}>{children}</div>
+        <footer className={styles.footer}>
+          <div className={styles.footerBar}>
+            <div className={styles.profile}>
+              <img src={"image/ex1.jpg"} />
+              <span>소영's 프로젝트</span>
+            </div>
+            <div className={styles.link}>
+              <div>
+                <img src={"image/git.jpg"} />
+                <span>Github</span>
+              </div>
+              <div>
+                <img src={"image/notion.jpg"} />
+                <span>Notion</span>
+              </div>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );
