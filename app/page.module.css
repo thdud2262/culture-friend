@@ -4,10 +4,9 @@
   font-weight: 700;
   color: teal;
 }
-.content {
+.contents {
   max-width: 1000px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 /* header, footer */
 .header {
@@ -38,22 +37,157 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
+.header .navbar .loginBox p {
+  margin: 4px;
+  cursor: pointer;
+}
 
-.main {
+.footer {
+  width: 100%;
+  border-top: 1px solid teal;
+  height: 150px;
   padding: 20px 0;
   box-sizing: border-box;
+}
+.footer .footerBar {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .footerBar .profile {
+  display: flex;
+  align-items: center;
+}
+.footer .footerBar .profile p {
+  text-align: center;
+  font-size: 20px;
+}
+.footer .footerBar .profile img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.footer .footerBar .link div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.footer .footerBar .link img {
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+}
+.main .imgBox {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+.main .imgBox .mainText {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  width: 350px;
+  height: 120px;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.main .imgBox .mainText p {
+  opacity: 1;
+  font-weight: 700;
+}
+.main .imgBox button {
+  position: absolute;
+  font-size: 60px;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+}
+.main .imgBox .leftBtn {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.main .imgBox .rightBtn {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.main .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .main .subTitleBox {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
 }
-.main .subTitleBox span{
+.main .subTitleBox p {
   font-size: 12px;
   cursor: pointer;
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 .main .subTitleBox .subTitle {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: teal;
-  margin-bottom: 20px;
+  padding: 30px 0 10px;
+  box-sizing: border-box;
+}
+
+.main .cultureListBox .listBox {
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.main .cultureListBox .listBox .list {
+  width: 150px;
+  height: 220px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.main .cultureListBox .listBox .list img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.main .cultureListBox .listBox .list .listTitle {
+  margin-bottom: 10px;
+}
+.main .cultureListBox .listBox .list .listDate {
+  font-size: 8px;
+  margin-bottom: 2px;
+}
+.main .cultureListBox .listBox .list .listDate {
+  font-size: 12px;
+}
+.main .cultureContentBox {
+  margin-bottom: 50px;
+}
+.main .cultureContentBox .contentBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.main .cultureContentBox .contentBox .content {
+  width: 300px;
+  border: 1px solid lightgray;
+}
+.main .cultureContentBox .contentBox .content .text,
+.subTitleBox {
+  margin: 0 8px;
+}
+.main .cultureContentBox .contentBox .content img {
+  width: 100%;
+  margin-top: 8px;
 }
