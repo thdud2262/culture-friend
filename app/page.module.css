@@ -37,7 +37,11 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
-.header .navbar .loginBox p {
+.header .navbar .navItem:visited {
+  color: inherit;
+  text-decoration: none;
+}
+.header .navbar .loginBox a {
   margin: 4px;
   cursor: pointer;
 }
@@ -129,7 +133,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 30px;
 }
 .main .subTitleBox p {
   font-size: 12px;
@@ -151,8 +154,9 @@
   justify-content: space-between;
 }
 .main .cultureListBox .listBox .list {
-  width: 150px;
+  max-width: 150px;
   height: 220px;
+  margin: 0 4px;
   margin-bottom: 10px;
   cursor: pointer;
 }
@@ -176,12 +180,31 @@
 }
 .main .cultureContentBox .contentBox {
   width: 100%;
+  height: 350px;
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .main .cultureContentBox .contentBox .content {
   width: 300px;
+  height: 100%;
   border: 1px solid lightgray;
+}
+.main .cultureContentBox .contentBox .content .contentSubTitleBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 8px;
+}
+.main .cultureContentBox .contentBox .content .more {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.main .cultureContentBox .contentBox .content .contentSubTitle {
+  color: teal;
+  font-size: 20px;
 }
 .main .cultureContentBox .contentBox .content .text,
 .subTitleBox {
@@ -189,5 +212,14 @@
 }
 .main .cultureContentBox .contentBox .content img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
   margin-top: 8px;
+}
+/* 반응형 */
+@media (max-width: 800px) {
+  .main .cultureListBox .listBox {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

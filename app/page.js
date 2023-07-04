@@ -23,44 +23,44 @@ export default function Home() {
           <h1 className={styles.subTitle}>공연/전시 정보</h1>
           <p>상세페이지 이동</p>
         </div>
-        <div className={styles.listBox}>
-          <div className={styles.list}>
+        <ul className={styles.listBox}>
+          <li className={styles.list}>
             <img src={"image/ex1.jpg"} />
             <p className={styles.listTitle}>공연제목입니다</p>
             <p className={styles.listDate}>2023.07.03 - 2023.07.06</p>
             <p className={styles.listLocation}>공연장입니다</p>
-          </div>
-          <div className={styles.list}>
+          </li>
+          <li className={styles.list}>
             <img src={"image/ex1.jpg"} />
             <p className={styles.listTitle}>공연제목입니다</p>
             <p className={styles.listDate}>2023.07.03 - 2023.07.06</p>
             <p className={styles.listLocation}>공연장입니다</p>
-          </div>
-          <div className={styles.list}>
+          </li>
+          <li className={styles.list}>
             <img src={"image/ex1.jpg"} />
             <p className={styles.listTitle}>공연제목입니다</p>
             <p className={styles.listDate}>2023.07.03 - 2023.07.06</p>
             <p className={styles.listLocation}>공연장입니다</p>
-          </div>
-          <div className={styles.list}>
+          </li>
+          <li className={styles.list}>
             <img src={"image/ex1.jpg"} />
             <p className={styles.listTitle}>공연제목입니다</p>
             <p className={styles.listDate}>2023.07.03 - 2023.07.06</p>
             <p className={styles.listLocation}>공연장입니다</p>
-          </div>
-          <div className={styles.list}>
+          </li>
+          <li className={styles.list}>
             <img src={"image/ex1.jpg"} />
             <p className={styles.listTitle}>공연제목입니다</p>
             <p className={styles.listDate}>2023.07.03 - 2023.07.06</p>
             <p className={styles.listLocation}>공연장입니다</p>
-          </div>
-          <div className={styles.list}>
+          </li>
+          <li className={styles.list}>
             <img src={"image/ex1.jpg"} />
             <p className={styles.listTitle}>공연제목입니다</p>
             <p className={styles.listDate}>2023.07.03 - 2023.07.06</p>
             <p className={styles.listLocation}>공연장입니다</p>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
       <div className={styles.cultureContentBox}>
         <div className={styles.subTitleBox}>
@@ -68,8 +68,8 @@ export default function Home() {
         </div>
         <div className={styles.contentBox}>
           <div className={styles.content}>
-            <div className={styles.subTitleBox}>
-              <p className={styles.subTitle}>YouTube</p>
+            <div className={styles.contentSubTitleBox}>
+              <p className={styles.contentSubTitle}>YouTube</p>
               <p className={styles.more}>더보기</p>
             </div>
             <p className={styles.text}>
@@ -79,8 +79,8 @@ export default function Home() {
             <img src={'image/ex1.jpg'}/>
           </div>
           <div className={styles.content}>
-            <div className={styles.subTitleBox}>
-              <p className={styles.subTitle}>YouTube</p>
+            <div className={styles.contentSubTitleBox}>
+              <p className={styles.contentSubTitle}>내 주변 문화공간</p>
               <p className={styles.more}>더보기</p>
             </div>
             <p className={styles.text}>
@@ -90,8 +90,8 @@ export default function Home() {
             <img src={'image/ex1.jpg'}/>
           </div>
           <div className={styles.content}>
-            <div className={styles.subTitleBox}>
-              <p className={styles.subTitle}>YouTube</p>
+            <div className={styles.contentSubTitleBox}>
+              <p className={styles.contentSubTitle}>내 주변 문화공간</p>
               <p className={styles.more}>더보기</p>
             </div>
             <p className={styles.text}>
@@ -100,6 +100,7 @@ export default function Home() {
             </p>
             <img src={'image/ex1.jpg'}/>
           </div>
+
         </div>
       </div>
     </main>
