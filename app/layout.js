@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 import styles from "./page.module.css";
 import { Inter } from "next/font/google";
@@ -19,22 +20,22 @@ export default function RootLayout({ children }) {
         <header className={styles.header}>
           <div className={styles.navbar}>
             <div className={styles.mainItemBox}>
-              <div className={styles.navItem}>
+              <Link href="/cultureList" className={styles.navItem}>
                 <p>오늘의</p>
                 <p>공연/전시</p>
-              </div>
-              <div className={styles.navItem}>
+              </Link>
+              <Link href="/cultureCalendar" className={styles.navItem}>
                 <p>전체 일정</p>
                 <p>(달력)</p>
-              </div>
-              <div className={styles.navItem}>
+              </Link>
+              <Link href="/cultureMap" className={styles.navItem}>
                 <p>내 주변</p>
                 <p>공연/전시장</p>
-              </div>
+              </Link>
             </div>
             <div className={styles.loginBox}>
-              <p>로그인</p>
-              <p>회원가입</p>
+              <Link href={'/login'}>로그인</Link>
+              <Link href={'/signup'}>회원가입</Link>
             </div>
           </div>
         </header>
