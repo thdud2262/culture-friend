@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className={styles.contents}>
-          <h1 className={styles.title}>나도 문화인</h1>
+          <Link href='/' className={styles.title}>나도 문화인</Link>
         </div>
         <header className={styles.header}>
           <div className={styles.navbar}>
