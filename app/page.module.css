@@ -1,8 +1,9 @@
 .title {
-  margin: 20px auto;
-  font-size: 28px;
-  font-weight: 700;
-  color: teal;
+  display: block;
+  margin: 20px auto !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: teal !important;
 }
 .contents {
   max-width: 1000px;
