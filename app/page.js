@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function Home() {
@@ -76,7 +76,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
               doloribus porro, repudiandae ipsa optio eum architecto corrupti
             </p>
-            <img src={'image/ex1.jpg'}/>
+            <img src={"image/ex1.jpg"} />
           </div>
           <div className={styles.content}>
             <div className={styles.contentSubTitleBox}>
@@ -87,7 +87,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
               doloribus porro, repudiandae ipsa optio eum architecto corrupti
             </p>
-            <img src={'image/ex1.jpg'}/>
+            <img src={"image/ex1.jpg"} />
           </div>
           <div className={styles.content}>
             <div className={styles.contentSubTitleBox}>
@@ -98,9 +98,8 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
               doloribus porro, repudiandae ipsa optio eum architecto corrupti
             </p>
-            <img src={'image/ex1.jpg'}/>
+            <img src={"image/ex1.jpg"} />
           </div>
-
         </div>
       </div>
     </main>

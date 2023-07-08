@@ -58,8 +58,6 @@ a:active {
 }
 
 body .container {
-  border: 1px solid red;
   width: 100%;
   height: 100vh;
 }
-
