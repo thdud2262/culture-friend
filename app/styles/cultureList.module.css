@@ -2,12 +2,26 @@
   position: relative;
   font-family: "SUITE-Regular";
 }
-.container h1 {
-  font-size: 20px;
+.cultureMonth h1 {
+  margin: 22px;
   color: teal;
   font-weight: 700;
   text-align: center;
-  margin: 20px;
+  font-size: 22px;
+}
+.cultureMonth > h1 > span{
+  font-size: 40px;
+}
+.cultureMonth {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cultureMonth button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
 }
 .listBox {
   display: flex;
@@ -56,10 +70,7 @@
   margin-bottom: 12px;
   font-size: 14px;
 }
-.list .link {
-  display: block;
-  text-align: right;
-  font-size: 14px;
-  margin-top: 10px;
-  color: #727272;
+.list .place > span {
+  color: teal;
+  font-weight: 700;
 }

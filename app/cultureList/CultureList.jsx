@@ -1,21 +1,22 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
 import styles from "../styles/cultureList.module.css";
 
 export default function CultureList() {
-  const today = new Date().toISOString().slice(0,7);
-  console.log(today)
+  const date = new Date();
+  const [curDate, setCurDate] = useState({
+    year: date.getFullYear(),
+    month: date.getMonth(),
+  });
+  const urlDate = `${curDate.year}-${String(curDate.month+1).padStart(2, "0")}`;
+  console.log(urlDate);
 
-  const [date, setDate] = useState(today);
   const [cultureList, setCultureList] = useState([]);
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
 
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/100/ / /${today}`;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/100/ / /${urlDate}`;
 
-  console.log(cultureList);
   useEffect(() => {
     fetch(url, {
       method: "GET",
@@ -23,11 +24,6 @@ export default function CultureList() {
       .then((res) => res.json())
       .then((result) => {
         const lists = result.culturalEventInfo.row;
-        // const list = lists.filter((el, idx) => {
-        //   return el.DATE.split("-")[1] === "07";
-        // });
-        // console.log("해당 월 원본", list);
-        // // 해당 월의 DATE기준으로 정렬
         const listCopy = [...lists];
         const sortedList = listCopy.sort((a, b) => {
           const dateA = new Date(a.DATE.split("~")[0]);
@@ -35,12 +31,28 @@ export default function CultureList() {
           return dateA - dateB;
         });
         setCultureList(sortedList);
-        // setCultureList(lists);
       });
-  }, []);
+  }, [curDate]);
 
-  const handleMoveUrl = (moveUrl) => {
-    window.open(moveUrl, "_blank");
+  const handlePrevMonth = () => {
+    setCurDate((state) => {
+      const prevMonth = state.month - 1;
+      const prevYear = state.year;
+      if (state.month < 1) {
+        return { ...state, month: 11, year: prevYear - 1 };
+      }
+      return { ...state, month: prevMonth };
+    });
+  };
+  const handleNextMonth = () => {
+    setCurDate((state) => {
+      const nextMonth = state.month + 1;
+      const nextYear = state.year;
+      if (state.month == 11) {
+        return { ...state, month: 0, year: nextYear + 1 };
+      }
+      return { ...state, month: nextMonth };
+    });
   };
   const onClick = () => {
     // 전체 데이터 중에서 7월공연만 검색
@@ -79,6 +91,14 @@ export default function CultureList() {
   return (
     <>
       <div>
+        <div className={styles.cultureMonth}>
+          <button onClick={handlePrevMonth}>&lt;</button>
+          <h1>
+            {curDate.year}년 &nbsp;
+            <span>{curDate.month + 1}</span>월의 공연 / 전시
+          </h1>
+          <button onClick={handleNextMonth}> &gt; </button>
+        </div>
         <div className={styles.listBox}>
           {cultureList.map((li, idx) => {
             return (
@@ -95,7 +115,9 @@ export default function CultureList() {
                   <p className={styles.codeName}>{li.CODENAME}</p>
                   <p className={styles.date}>{li.DATE}</p>
                   <p className={styles.title}>{li.TITLE}</p>
-                  <p className={styles.place}>공연 장소: {li.PLACE}</p>
+                  <p className={styles.place}>
+                    <span>공연 장소:</span> {li.PLACE}
+                  </p>
                 </div>
               </div>
             );
@@ -105,3 +127,5 @@ export default function CultureList() {
     </>
   );
 }
+
+// CODENAME에 따라 LIST를 다르게 보여줄 수 있다
