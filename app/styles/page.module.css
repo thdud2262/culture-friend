@@ -1,17 +1,22 @@
-.title {
-  margin: 20px auto;
-  font-size: 28px;
-  font-weight: 700;
-  color: teal;
-}
-.contents {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-/* header, footer */
+/* header */
+
 .header {
   width: 100%;
-  height: 60px;
+  border-bottom: 1px solid teal;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+}
+.headerTitle a {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0;
+  box-sizing: border-box;
+  display: block;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: teal !important;
 }
 .header .navbar {
   max-width: 1000px;
@@ -46,6 +51,15 @@
   cursor: pointer;
 }
 
+/* content */
+.contents {
+  max-width: 1000px;
+  margin: 0 auto;
+  /* border: 1px solid green; */
+  margin-top: 180px;
+}
+
+/* footer */
 .footer {
   width: 100%;
   border-top: 1px solid teal;

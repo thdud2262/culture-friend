@@ -1,6 +1,6 @@
 import Link from "next/link";
 import "./globals.css";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className={styles.contents}>
-          <h1 className={styles.title}>나도 문화인</h1>
-        </div>
         <header className={styles.header}>
+          <div className={styles.headerTitle}>
+            <Link href='/'>나도 문화인</Link>
+          </div>
           <div className={styles.navbar}>
             <div className={styles.mainItemBox}>
               <Link href="/cultureList" className={styles.navItem}>
@@ -31,7 +31,12 @@ export default function RootLayout({ children }) {
               <Link href="/cultureMap" className={styles.navItem}>
                 <p>내 주변</p>
                 <p>공연/전시장</p>
+                {/* http://data.seoul.go.kr/dataList/OA-15487/S/1/datasetView.do */}
               </Link>
+              <div>
+                <input placeholder="공연 제목을 검색합니다"/>
+                <button>검색</button>
+              </div>
             </div>
             <div className={styles.loginBox}>
               <Link href={'/login'}>로그인</Link>
@@ -40,7 +45,7 @@ export default function RootLayout({ children }) {
           </div>
         </header>
         <div className={styles.contents}>{children}</div>
-        <footer className={styles.footer}>
+        {/* <footer className={styles.footer}>
           <div className={styles.footerBar}>
             <div className={styles.profile}>
               <img src={"image/ex1.jpg"} />
@@ -57,7 +62,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </div>
-        </footer>
+        </footer> */}
       </body>
     </html>
   );
