@@ -1,0 +1,76 @@
+.container {
+  position: relative;
+  font-family: "SUITE-Regular";
+}
+.cultureMonth h1 {
+  margin: 22px;
+  color: teal;
+  font-weight: 700;
+  text-align: center;
+  font-size: 22px;
+}
+.cultureMonth > h1 > span{
+  font-size: 40px;
+}
+.cultureMonth {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cultureMonth button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+.listBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.list {
+  border: 1px solid lightgray;
+  width: 220px;
+  height: 400px;
+  margin: 10px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.list img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+}
+.list > div {
+  width: 100%;
+  height: 150px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.list p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 22px;
+}
+.list .codeName {
+  background-color: #eee;
+  padding: 4px 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+.list .date {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.list .place > span {
+  color: teal;
+  font-weight: 700;
+}
