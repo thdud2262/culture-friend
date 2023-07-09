@@ -39,8 +39,8 @@ export default function RootLayout({ children }) {
               </div>
             </div>
             <div className={styles.loginBox}>
-              <Link href={'/login'}>로그인</Link>
-              <Link href={'/signup'}>회원가입</Link>
+              <Link href={'/loginPage'}>로그인</Link>
+              <Link href={'/signupPage'}>회원가입</Link>
             </div>
           </div>
         </header>
