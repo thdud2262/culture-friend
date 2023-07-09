@@ -2,6 +2,7 @@ import Link from "next/link";
 import "./globals.css";
 import styles from "./styles/page.module.css";
 import { Inter } from "next/font/google";
+import SearchBar from "./searchPage/SearchBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,21 +23,14 @@ export default function RootLayout({ children }) {
             <div className={styles.mainItemBox}>
               <Link href="/cultureList" className={styles.navItem}>
                 <p>오늘의</p>
-                <p>공연/전시</p>
-              </Link>
-              <Link href="/cultureCalendar" className={styles.navItem}>
-                <p>전체 일정</p>
-                <p>(달력)</p>
+                <p>공--연</p>
               </Link>
               <Link href="/cultureMap" className={styles.navItem}>
                 <p>내 주변</p>
-                <p>공연/전시장</p>
+                <p>공연장</p>
                 {/* http://data.seoul.go.kr/dataList/OA-15487/S/1/datasetView.do */}
               </Link>
-              <div>
-                <input placeholder="공연 제목을 검색합니다"/>
-                <button>검색</button>
-              </div>
+              <SearchBar/>
             </div>
             <div className={styles.loginBox}>
               <Link href={'/loginPage'}>로그인</Link>

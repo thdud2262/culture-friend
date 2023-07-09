@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../styles/cultureList.module.css";
 import { v4 as uuidv4 } from "uuid";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
 import { FiList, FiGrid } from "react-icons/fi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -137,6 +137,9 @@ export default function CultureList() {
             <button onClick={() => handlePageStyle("grid")}>
               <FiGrid />
             </button>
+            <Link href="/cultureCalendar" className={styles.navItem} style={{fontSize:'26px', color:'gray'}}>
+              <FaRegCalendarAlt/>
+            </Link>
           </div>
         </div>
         {codenameKey.map((c) => {
