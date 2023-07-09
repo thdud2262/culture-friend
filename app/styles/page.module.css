@@ -31,6 +31,7 @@
 .header .navbar > div {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .header .navbar .navItem {

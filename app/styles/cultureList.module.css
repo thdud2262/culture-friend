@@ -59,6 +59,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  font-family: "SUITE-Regular";
 }
 .gridBox .list img {
   width: 100%;
@@ -85,11 +86,10 @@
   border: none;
   background-color: rgba(0, 0, 0, 0);
   font-size: 30px;
-  z-index: 10;
 }
 /* list 공통 스타일 */
 .list:hover {
-  box-shadow: 1px 1px 3px #dddddd
+  box-shadow: 1px 1px 3px #dddddd;
 }
 .list .codeName {
   background-color: #eee;
@@ -106,7 +106,6 @@
   color: teal;
   font-weight: 700;
 }
-
 
 .listBox {
   display: flex;
@@ -140,5 +139,4 @@
   border: none;
   background-color: rgba(0, 0, 0, 0);
   font-size: 30px;
-  z-index: 10;
 }
