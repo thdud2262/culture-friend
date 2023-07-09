@@ -1,0 +1,144 @@
+.container {
+  position: relative;
+  font-family: "SUITE-Regular";
+}
+.cultureNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cultureNav .gridIcon button {
+  width: 30px;
+  height: 30px;
+  margin: 4px;
+  padding: 0;
+  border: none;
+  background-color: white;
+  font-size: 26px;
+  font-weight: 400;
+  color: gray;
+  cursor: pointer;
+}
+
+.cultureMonth h1 {
+  margin: 22px;
+  color: teal;
+  font-weight: 700;
+  text-align: center;
+  font-size: 22px;
+}
+.cultureMonth > h1 > span {
+  font-size: 40px;
+}
+.cultureMonth {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cultureMonth button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.gridBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+.gridBox .list {
+  position: relative;
+  border: 1px solid lightgray;
+  width: 220px;
+  height: 400px;
+  margin: 10px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.gridBox .list img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+}
+.gridBox .list > div {
+  width: 100%;
+  height: 150px;
+  padding: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.gridBox .list p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 22px;
+}
+.gridBox .likeIcon {
+  position: absolute;
+  top: 66%;
+  right: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 30px;
+  z-index: 10;
+}
+/* list 공통 스타일 */
+.list:hover {
+  box-shadow: 1px 1px 3px #dddddd
+}
+.list .codeName {
+  background-color: #eee;
+  padding: 4px 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+.list .date {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.list .place > span {
+  color: teal;
+  font-weight: 700;
+}
+
+
+.listBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px 0;
+}
+.listBox .list {
+  position: relative;
+  border: 1px solid lightgray;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.listBox .list > div {
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+.listBox img {
+  width: 140px;
+  height: 180px;
+  margin-right: 10px;
+}
+.listBox .likeIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 30px;
+  z-index: 10;
+}
