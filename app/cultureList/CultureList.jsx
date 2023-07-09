@@ -2,6 +2,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../styles/cultureList.module.css";
+import { v4 as uuidv4 } from "uuid";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FiList, FiGrid } from "react-icons/fi";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function CultureList() {
   const date = new Date();
@@ -9,13 +13,28 @@ export default function CultureList() {
     year: date.getFullYear(),
     month: date.getMonth(),
   });
-  const urlDate = `${curDate.year}-${String(curDate.month+1).padStart(2, "0")}`;
-  console.log(urlDate);
+  const [codename, setCodename] = useState(" ");
+  const [title, setTitle] = useState(" ");
+  const urlDate = `${curDate.year}-${String(curDate.month + 1).padStart(
+    2,
+    "0"
+  )}`;
 
   const [cultureList, setCultureList] = useState([]);
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/10/${codename}/${title}/${urlDate}`;
+  const [pageStyle, setPageStyle] = useState("grid");
 
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/100/ / /${urlDate}`;
+  // CODENAME 검색
+  const codenameKey = [
+    "전체",
+    "교육",
+    "연극",
+    "클래식",
+    "뮤지컬/오페라",
+    "콘서트",
+    "축제",
+  ];
 
   useEffect(() => {
     fetch(url, {
@@ -23,6 +42,10 @@ export default function CultureList() {
     })
       .then((res) => res.json())
       .then((result) => {
+        if (result.culturalEventInfo == undefined) {
+          setCultureList(null);
+          return;
+        }
         const lists = result.culturalEventInfo.row;
         const listCopy = [...lists];
         const sortedList = listCopy.sort((a, b) => {
@@ -32,7 +55,7 @@ export default function CultureList() {
         });
         setCultureList(sortedList);
       });
-  }, [curDate]);
+  }, [curDate, codename, title, pageStyle]);
 
   const handlePrevMonth = () => {
     setCurDate((state) => {
@@ -54,35 +77,38 @@ export default function CultureList() {
       return { ...state, month: nextMonth };
     });
   };
-  const onClick = () => {
-    // 전체 데이터 중에서 7월공연만 검색
-    // const list = lists.filter((li, idx) => {
-    //   return li.DATE.split("-")[1] === "07";
-    // });
-    // console.log("해당 월 원본", list);
-    // 해당 월의 DATE기준으로 정렬
-    // const listCopy = [...list];
-    // const sortedList = listCopy.sort((a, b) => {
-    //   const dateA = new Date(a.DATE.split("~")[0]);
-    //   const dateB = new Date(b.DATE.split("~")[0]);
-    //   return dateA - dateB;
-    // });
-    // console.log("날짜정렬", sortedList);
-    // DATE기준으로 정렬
-    // 복사 후 정렬해야함 -> 원본도 같이 정렬됨ㅋㅋ
-    // const copy = [...lists];
-    // const sortedList = copy.sort((a, b) => {
-    //   // console.log(new Date(a.DATE.split("~")[0]));
-    //   const dateA = new Date(a.DATE.split("~")[0]);
-    //   const dateB = new Date(b.DATE.split("~")[0]);
-    //   return dateA - dateB;
-    // });
-    // console.log("복사+정렬", sortedList);
-    // query로 데이터 검색 못하면 해결책 : get DATA에서 list에서 구 검색
-    // const list = lists.filter((li, idx) => {
-    //   return li.GUNAME === "서초구";
-    // });
+
+  const handleSearchCodeName = (c) => {
+    if (c == "전체") {
+      setCodename(" ");
+      return;
+    }
+    setCodename(c);
   };
+
+  const handlePageStyle = (style) => {
+    console.log(style);
+    setPageStyle(style);
+  };
+  if (cultureList == null) {
+    return (
+      <>
+        <div className={styles.cultureMonth}>
+          <button onClick={handlePrevMonth}>
+            <IoIosArrowBack />
+          </button>
+          <h1>
+            {curDate.year}년 &nbsp;
+            <span>{curDate.month + 1}</span>월의 공연 / 전시
+          </h1>
+          <button onClick={handleNextMonth}>
+            <IoIosArrowForward />
+          </button>
+        </div>
+        <div>공연 정보가 없습니다</div>
+      </>
+    );
+  }
 
   if (cultureList.length < 1) {
     return <div>로딩중</div>;
@@ -91,36 +117,85 @@ export default function CultureList() {
   return (
     <>
       <div>
-        <div className={styles.cultureMonth}>
-          <button onClick={handlePrevMonth}>&lt;</button>
-          <h1>
-            {curDate.year}년 &nbsp;
-            <span>{curDate.month + 1}</span>월의 공연 / 전시
-          </h1>
-          <button onClick={handleNextMonth}> &gt; </button>
+        <div className={styles.cultureNav}>
+          <div className={styles.cultureMonth}>
+            <button onClick={handlePrevMonth}>
+              <IoIosArrowBack />
+            </button>
+            <h1>
+              {curDate.year}년 &nbsp;
+              <span>{curDate.month + 1}</span>월의 공연 / 전시
+            </h1>
+            <button onClick={handleNextMonth}>
+              <IoIosArrowForward />
+            </button>
+          </div>
+          <div className={styles.gridIcon}>
+            <button onClick={() => handlePageStyle("list")}>
+              <FiList />
+            </button>
+            <button onClick={() => handlePageStyle("grid")}>
+              <FiGrid />
+            </button>
+          </div>
         </div>
-        <div className={styles.listBox}>
-          {cultureList.map((li, idx) => {
-            return (
-              <div
-                key={idx}
-                className={styles.list}
-                onClick={() => {
-                  window.open(li.ORG_LINK, "_blank");
-                  // handleMoveUrl(li.ORG_LINK);
-                }}
-              >
-                <img src={li.MAIN_IMG} />
-                <div>
-                  <p className={styles.codeName}>{li.CODENAME}</p>
-                  <p className={styles.date}>{li.DATE}</p>
-                  <p className={styles.title}>{li.TITLE}</p>
-                  <p className={styles.place}>
-                    <span>공연 장소:</span> {li.PLACE}
-                  </p>
+        {codenameKey.map((c) => {
+          const uniqueId = uuidv4();
+          return (
+            <button key={uniqueId} onClick={() => handleSearchCodeName(c)}>
+              {c}
+            </button>
+          );
+        })}
+
+        <div className={pageStyle === "grid" ? styles.gridBox : styles.listBox}>
+          {cultureList.map((li) => {
+            const uniqueId = uuidv4();
+            if (pageStyle == "grid") {
+              return (
+                <div key={uniqueId} className={styles.list}>
+                  <img src={li.MAIN_IMG} />
+                  <button className={styles.likeIcon}>
+                    {/* <FaHeart /> */}
+                    <FaRegHeart />
+                  </button>
+                  <div
+                    onClick={() => {
+                      window.open(li.ORG_LINK, "_blank");
+                    }}
+                  >
+                    <p className={styles.codeName}>{li.CODENAME}</p>
+                    <p className={styles.date}>{li.DATE}</p>
+                    <p className={styles.title}>{li.TITLE}</p>
+                    <p className={styles.place}>
+                      <span>공연 장소:</span> {li.PLACE}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
+              );
+            } else if (pageStyle == "list") {
+              return (
+                <div key={uniqueId} className={styles.list}>
+                  <img src={li.MAIN_IMG} />
+                  <button className={styles.likeIcon}>
+                    {/* <FaHeart /> */}
+                    <FaRegHeart />
+                  </button>
+                  <div
+                    onClick={() => {
+                      window.open(li.ORG_LINK, "_blank");
+                    }}
+                  >
+                    <p className={styles.codeName}>{li.CODENAME}</p>
+                    <p className={styles.date}>{li.DATE}</p>
+                    <p className={styles.title}>{li.TITLE}</p>
+                    <p className={styles.place}>
+                      <span>공연 장소:</span> {li.PLACE}
+                    </p>
+                  </div>
+                </div>
+              );
+            }
           })}
         </div>
       </div>
