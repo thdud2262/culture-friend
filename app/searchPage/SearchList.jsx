@@ -10,7 +10,6 @@ export default function SearchList() {
   const params = useParams();
   const searchText = decodeURIComponent(params.text);
   const [resultList, setResulthList] = useState([]);
-  const uniqueId = uuidv4();
 
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/10/ /${searchText}`;
@@ -21,7 +20,6 @@ export default function SearchList() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         if (result.culturalEventInfo == undefined) {
           setResulthList(null);
           return;
@@ -44,7 +42,10 @@ export default function SearchList() {
   return (
     <div className={styles.listBox}>
       {resultList.map((li) => {
-        console.log(li);
+        const uniqueId = uuidv4();
+        const today = new Date().toISOString().split("T")[0];
+        const li_date = li.END_DATE.split(" ")[0];
+        
         return (
           <div key={uniqueId} className={styles.list}>
             <img src={li.MAIN_IMG} />
@@ -63,6 +64,7 @@ export default function SearchList() {
               <p className={styles.place}>
                 <span>공연 장소:</span> {li.PLACE}
               </p>
+              <p style={{color:'red'}}>{today > li_date? "공연 종료" : ""}</p>
             </div>
           </div>
         );

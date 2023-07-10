@@ -34,6 +34,7 @@ export default function CultureList() {
     "뮤지컬/오페라",
     "콘서트",
     "축제",
+    "전시/미술",
   ];
 
   useEffect(() => {
@@ -55,7 +56,7 @@ export default function CultureList() {
         });
         setCultureList(sortedList);
       });
-  }, [curDate, codename, title, pageStyle]);
+  }, [urlDate, codename, title, pageStyle]);
 
   const handlePrevMonth = () => {
     setCurDate((state) => {
@@ -137,8 +138,12 @@ export default function CultureList() {
             <button onClick={() => handlePageStyle("grid")}>
               <FiGrid />
             </button>
-            <Link href="/cultureCalendar" className={styles.navItem} style={{fontSize:'26px', color:'gray'}}>
-              <FaRegCalendarAlt/>
+            <Link
+              href="/cultureCalendar"
+              className={styles.navItem}
+              style={{ fontSize: "26px", color: "gray" }}
+            >
+              <FaRegCalendarAlt />
             </Link>
           </div>
         </div>
@@ -154,6 +159,9 @@ export default function CultureList() {
         <div className={pageStyle === "grid" ? styles.gridBox : styles.listBox}>
           {cultureList.map((li) => {
             const uniqueId = uuidv4();
+            const today = new Date().toISOString().split("T")[0];
+            const li_date = li.END_DATE.split(" ")[0];
+
             if (pageStyle == "grid") {
               return (
                 <div key={uniqueId} className={styles.list}>
@@ -167,7 +175,9 @@ export default function CultureList() {
                       window.open(li.ORG_LINK, "_blank");
                     }}
                   >
-                    <p className={styles.codeName}>{li.CODENAME}</p>
+                    <p className={styles.codeName}>{li.CODENAME}
+                      <span style={{ color: "red", fontWeight:'700', fontSize:'12px' }}>{today > li_date ? " _ 공연 종료" : ""}</span>
+                    </p>
                     <p className={styles.date}>{li.DATE}</p>
                     <p className={styles.title}>{li.TITLE}</p>
                     <p className={styles.place}>

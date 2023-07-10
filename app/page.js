@@ -91,7 +91,7 @@ export default function Home() {
           </div>
           <div className={styles.content}>
             <div className={styles.contentSubTitleBox}>
-              <p className={styles.contentSubTitle}>내 주변 문화공간</p>
+              <p className={styles.contentSubTitle}>공연 모임 생성</p>
               <p className={styles.more}>더보기</p>
             </div>
             <p className={styles.text}>
