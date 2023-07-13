@@ -3,6 +3,7 @@ import "./globals.css";
 import styles from "./styles/page.module.css";
 import { Inter } from "next/font/google";
 import SearchBar from "./searchPage/SearchBar";
+import TopScrollBtn from "./components/TopScrollBtn";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
           </div>
         </header>
         <div className={styles.contents}>{children}</div>
+        <TopScrollBtn/>
         {/* <footer className={styles.footer}>
           <div className={styles.footerBar}>
             <div className={styles.profile}>
