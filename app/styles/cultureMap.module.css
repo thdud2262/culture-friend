@@ -1,0 +1,73 @@
+.cultureMap {
+  font-family: "SUITE-Regular";
+}
+.cultureMap h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+  background-color: teal;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+}
+.mapBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px 0;
+}
+.searchBox {
+  max-width: 300px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.searchBox .selectSearchBox {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.searchBox .selectSearchBox > div {
+  margin-bottom: 10px;
+}
+.searchBox .selectSearchBox > div > span {
+  display: inline-block;
+  margin-right: 4px;
+}
+.searchBox .buttonSearchBox {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.searchBox .buttonSearchBox > button {
+  margin: 4px;
+}
+.searchBtn {
+  width: 100%;
+  height: 45px;
+  margin: 20px 0;
+  background-color: lightgray;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.searchBtn:hover {
+  background-color: gray;
+  color: white;
+  font-weight: 700;
+}
+
+.cultureTable {
+  border: 1px solid lightgray;
+  width: 100%;
+}
+.cultureTable thead tr{ 
+  height: 40px;
+  border-bottom: 1px solid lightgray;
+}
