@@ -8,7 +8,6 @@ export default function cultureList() {
   return (
     <div className={styles.container}>
       <CultureList />
-      <TopScrollBtn/>
     </div>
   );
 }
