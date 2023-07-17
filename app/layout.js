@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
             <SearchBar />
           </div>
           <div className={styles.navBox}>
-            <div  className={styles.nav}>
+            <div className={styles.nav}>
               <div className={styles.mainItemBox}>
                 <Link href="/cultureList" className={styles.navItem}>
                   오늘의 공연
@@ -40,8 +40,7 @@ export default async function RootLayout({ children }) {
               </div>
               <div className={styles.loginBox}>
                 <LoginBtn login={session ? true : false} />
-                {/* <Link href={'/loginPage'}>로그인</Link> */}
-                <Link href={"/signupPage"}>회원가입</Link>
+                {session ? <Link href={`/myPage/${session.user.name}`}>마이페이지</Link> : null}
               </div>
             </div>
           </div>
