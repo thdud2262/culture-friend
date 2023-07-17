@@ -88,7 +88,6 @@ export default function CultureList() {
   };
 
   const handlePageStyle = (style) => {
-    console.log(style);
     setPageStyle(style);
   };
   if (cultureList == null) {

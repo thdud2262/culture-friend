@@ -13,7 +13,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
+    <div className={styles.searchBox}>
       <input
         className={styles.searchInput}
         value={searchText || ""}
