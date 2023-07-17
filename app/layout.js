@@ -1,6 +1,6 @@
 import Link from "next/link";
 import "./globals.css";
-import styles from "./styles/page.module.css";
+import styles from "./styles/layout.module.css";
 import { Inter } from "next/font/google";
 import SearchBar from "./searchPage/SearchBar";
 import TopScrollBtn from "./components/TopScrollBtn";
@@ -25,24 +25,23 @@ export default async function RootLayout({ children }) {
         <header className={styles.header}>
           <div className={styles.headerTitle}>
             <Link href="/">나도 문화인</Link>
+            <SearchBar />
           </div>
-          <div className={styles.navbar}>
-            <div className={styles.mainItemBox}>
-              <Link href="/cultureList" className={styles.navItem}>
-                <p>오늘의</p>
-                <p>공--연</p>
-              </Link>
-              <Link href="/cultureMap" className={styles.navItem}>
-                <p>내 주변</p>
-                <p>공연장</p>
-                {/* http://data.seoul.go.kr/dataList/OA-15487/S/1/datasetView.do */}
-              </Link>
-              <SearchBar />
-            </div>
-            <div className={styles.loginBox}>
-              <LoginBtn login={session ? true : false} />
-              {/* <Link href={'/loginPage'}>로그인</Link> */}
-              <Link href={"/signupPage"}>회원가입</Link>
+          <div className={styles.navBox}>
+            <div className={styles.nav}>
+              <div className={styles.mainItemBox}>
+                <Link href="/cultureList" className={styles.navItem}>
+                  오늘의 공연
+                </Link>
+                <Link href="/cultureMap" className={styles.navItem}>
+                  내 주변 공연장
+                  {/* http://data.seoul.go.kr/dataList/OA-15487/S/1/datasetView.do */}
+                </Link>
+              </div>
+              <div className={styles.loginBox}>
+                <LoginBtn login={session ? true : false} />
+                {session ? <Link href={`/myPage/${session.user.name}`}>마이페이지</Link> : null}
+              </div>
             </div>
           </div>
         </header>
