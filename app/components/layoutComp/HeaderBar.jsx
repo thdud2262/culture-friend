@@ -1,15 +1,15 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./layoutComp.module.css";
-import SearchBar from "./SearchBar";
+import HeaderSearchBar from "./HeaderSearchBar";
 import LoginBtn from "./LoginBtn";
 
-export default function HeaderBar({username}) {
+export default function HeaderBar({ username }) {
   return (
     <header className={styles.header}>
       <div className={styles.headerTitle}>
         <Link href="/">나도 문화인</Link>
-        <SearchBar />
+        <HeaderSearchBar />
       </div>
       <div className={styles.navBox}>
         <div className={styles.nav}>
@@ -21,19 +21,13 @@ export default function HeaderBar({username}) {
             내 주변 공연장
           </Link> */}
             {username ? (
-              <Link
-                href={`/myPage/${username}`}
-                className={styles.navItem}
-              >
+              <Link href={`/myPage/${username}`} className={styles.navItem}>
                 마이페이지
               </Link>
             ) : null}
           </div>
           <div className={styles.loginBox}>
-            <LoginBtn
-              login={username ? true : false}
-              username={username}
-            />
+            <LoginBtn login={username ? true : false} username={username} />
           </div>
         </div>
       </div>
