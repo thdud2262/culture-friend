@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function CultureCalendar() {
   return (
-    <div className='container'>cultureCalendar</div>
-  )
+    <div className="container">
+      cultureCalendar
+    </div>
+  );
 }

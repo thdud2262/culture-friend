@@ -1,12 +1,11 @@
-import Link from "next/link";
 import "./globals.css";
-import styles from "./styles/layout.module.css";
 import { Inter } from "next/font/google";
-import SearchBar from "./searchPage/SearchBar";
-import TopScrollBtn from "./components/TopScrollBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import LoginBtn from "./components/LoginBtn";
+import styles from './styles/layout.module.css'
+import TopScrollBtn from "./components/layoutComp/TopScrollBtn";
+import FooterBar from "./components/layoutComp/FooterBar";
+import HeaderBar from "./components/layoutComp/HeaderBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,54 +16,14 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession(authOptions);
-  console.log("세션", session);
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className={styles.header}>
-          <div className={styles.headerTitle}>
-            <Link href="/">나도 문화인</Link>
-            <SearchBar />
-          </div>
-          <div className={styles.navBox}>
-            <div className={styles.nav}>
-              <div className={styles.mainItemBox}>
-                <Link href="/cultureList" className={styles.navItem}>
-                  오늘의 공연
-                </Link>
-                <Link href="/cultureMap" className={styles.navItem}>
-                  내 주변 공연장
-                  {/* http://data.seoul.go.kr/dataList/OA-15487/S/1/datasetView.do */}
-                </Link>
-              </div>
-              <div className={styles.loginBox}>
-                <LoginBtn login={session ? true : false} />
-                {session ? <Link href={`/myPage/${session.user.name}`}>마이페이지</Link> : null}
-              </div>
-            </div>
-          </div>
-        </header>
+        <HeaderBar username={session?.user.name}/>
         <div className={styles.contents}>{children}</div>
+        <FooterBar />
         <TopScrollBtn />
-        {/* <footer className={styles.footer}>
-          <div className={styles.footerBar}>
-            <div className={styles.profile}>
-              <img src={"image/ex1.jpg"} />
-              <span>소영's 프로젝트</span>
-            </div>
-            <div className={styles.link}>
-              <div>
-                <img src={"image/git.jpg"} />
-                <span>Github</span>
-              </div>
-              <div>
-                <img src={"image/notion.jpg"} />
-                <span>Notion</span>
-              </div>
-            </div>
-          </div>
-        </footer> */}
       </body>
     </html>
   );
