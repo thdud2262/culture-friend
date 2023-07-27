@@ -1,10 +1,9 @@
-
-.main .imgBox {
+.main .mainImgBox {
   width: 100%;
   height: 400px;
   position: relative;
 }
-.main .imgBox .mainText {
+.main .mainImgBox .mainText {
   position: absolute;
   right: 30px;
   bottom: 30px;
@@ -14,11 +13,11 @@
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.4);
 }
-.main .imgBox .mainText p {
+.main .mainImgBox .mainText p {
   opacity: 1;
   font-weight: 700;
 }
-.main .imgBox button {
+.main .mainImgBox button {
   position: absolute;
   font-size: 60px;
   background-color: rgba(0, 0, 0, 0);
@@ -26,18 +25,18 @@
   border: none;
   cursor: pointer;
 }
-.main .imgBox .leftBtn {
+.main .mainImgBox .leftBtn {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
 }
-.main .imgBox .rightBtn {
+.main .mainImgBox .rightBtn {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
 }
 
-.main .imgBox img {
+.main .mainImgBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -45,9 +44,10 @@
 .main .subTitleBox {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
-.main .subTitleBox p {
+.main .subTitleBox a {
+  display: inline-block;
   font-size: 12px;
   cursor: pointer;
   padding: 10px 0;
@@ -62,9 +62,12 @@
 }
 
 .main .cultureListBox .listBox {
-  height: 300px;
+  /* background-color: yellow; */
+  height: 350px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid teal;
 }
 .main .cultureListBox .listBox .list {
   max-width: 150px;
@@ -79,15 +82,27 @@
   object-fit: cover;
 }
 .main .cultureListBox .listBox .list .listTitle {
-  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  height: 64px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  margin-bottom: 6px;
+  white-space: normal;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .main .cultureListBox .listBox .list .listDate {
-  font-size: 8px;
+  font-size: 9px;
   margin-bottom: 2px;
 }
-.main .cultureListBox .listBox .list .listDate {
-  font-size: 12px;
+.main .cultureListBox .listBox .list .listLocation {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .main .cultureContentBox {
   margin-bottom: 50px;
 }
