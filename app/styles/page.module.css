@@ -1,10 +1,10 @@
 
-.main .imgBox {
+.main .mainImgBox {
   width: 100%;
   height: 400px;
   position: relative;
 }
-.main .imgBox .mainText {
+.main .mainImgBox .mainText {
   position: absolute;
   right: 30px;
   bottom: 30px;
@@ -14,11 +14,11 @@
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.4);
 }
-.main .imgBox .mainText p {
+.main .mainImgBox .mainText p {
   opacity: 1;
   font-weight: 700;
 }
-.main .imgBox button {
+.main .mainImgBox button {
   position: absolute;
   font-size: 60px;
   background-color: rgba(0, 0, 0, 0);
@@ -26,18 +26,18 @@
   border: none;
   cursor: pointer;
 }
-.main .imgBox .leftBtn {
+.main .mainImgBox .leftBtn {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
 }
-.main .imgBox .rightBtn {
+.main .mainImgBox .rightBtn {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
 }
 
-.main .imgBox img {
+.main .mainImgBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -62,7 +62,8 @@
 }
 
 .main .cultureListBox .listBox {
-  height: 300px;
+  background-color: yellow;
+  height: 350px;
   display: flex;
   justify-content: space-between;
 }
