@@ -22,8 +22,9 @@ export default function CultureList() {
 
   const [cultureList, setCultureList] = useState([]);
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/10/${codename}/${title}/${urlDate}`;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/100/${codename}/${title}/${urlDate}`;
   const [pageStyle, setPageStyle] = useState("grid");
+
 
   // CODENAME 검색
   const codenameKey = [
@@ -54,6 +55,7 @@ export default function CultureList() {
           const dateB = new Date(b.DATE.split("~")[0]);
           return dateA - dateB;
         });
+
         setCultureList(sortedList);
       });
   }, [urlDate, codename, title, pageStyle]);
@@ -174,8 +176,17 @@ export default function CultureList() {
                       window.open(li.ORG_LINK, "_blank");
                     }}
                   >
-                    <p className={styles.codeName}>{li.CODENAME}
-                      <span style={{ color: "red", fontWeight:'700', fontSize:'12px' }}>{today > li_date ? " _ 공연 종료" : ""}</span>
+                    <p className={styles.codeName}>
+                      {li.CODENAME}
+                      <span
+                        style={{
+                          color: "red",
+                          fontWeight: "700",
+                          fontSize: "12px",
+                        }}
+                      >
+                        {today > li_date ? " _ 공연 종료" : ""}
+                      </span>
                     </p>
                     <p className={styles.date}>{li.DATE}</p>
                     <p className={styles.title}>{li.TITLE}</p>

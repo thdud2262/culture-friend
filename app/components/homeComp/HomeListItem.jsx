@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/home.module.css";
+import { serviceKey } from "@/app/util/util";
+import { API_SortFunc, API_FilterFunc } from "./homeUtils";
 
-export default function CultureListBox({ codename }) {
+export default function HomeListItem({ codename }) {
   const [cultureList, setCultureList] = useState([]);
   const curDate = new Date().toISOString().split("T")[0];
-  const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
 
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/6/${
-    codename ? codename : " "
-  }/ /${codename ? " " : curDate}`;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/30/
+  ${codename ? codename : " "}/ /${codename === null ? curDate : " "}`;
 
   useEffect(() => {
     fetch(url, {
@@ -21,10 +21,15 @@ export default function CultureListBox({ codename }) {
           setCultureList(null);
           return;
         }
-        setCultureList(result.culturalEventInfo.row);
+        const lists = result.culturalEventInfo.row;
+        const listCopy = [...lists];
+
+        const dataSortList = API_SortFunc(listCopy);
+        const dataFilterList = API_FilterFunc(dataSortList);
+
+        setCultureList(dataFilterList.slice(0, 6));
       });
   }, []);
-  // console.log(cultureList);
 
   return (
     <ul className={styles.listBox}>
@@ -34,7 +39,7 @@ export default function CultureListBox({ codename }) {
             <a href={list.ORG_LINK} target="_blank">
               <img src={list.MAIN_IMG} />
               <p className={styles.listTitle}>{list.TITLE}</p>
-              <p className={styles.listDate}>{list.STRTDATE.split(" ")[0]}</p>
+              <p className={styles.listDate}>{list.DATE}</p>
               <p className={styles.listLocation}>{list.PLACE}</p>
             </a>
           </li>
