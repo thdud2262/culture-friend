@@ -1,3 +1,5 @@
+export const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
+
 // API 데이터의 날짜순 정렬 함수
 const sortFunc = (data) =>
   data.sort((a, b) => {
