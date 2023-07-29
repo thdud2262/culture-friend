@@ -12,7 +12,7 @@ export default function SearchList() {
   const [resultList, setResulthList] = useState([]);
 
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/10/ /${searchText}`;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/150/ /${searchText}`;
 
   useEffect(() => {
     fetch(url, {

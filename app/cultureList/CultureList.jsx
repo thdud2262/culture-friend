@@ -4,12 +4,11 @@ import styles from "../styles/cultureList.module.css";
 import { v4 as uuidv4 } from "uuid";
 
 // component_import
-import { API_SortFunc } from "../util/utils";
+import { API_FilterFunc, API_SortFunc } from "../util/utils";
 import CultureListItem from "./CultureListItem";
-import CultureMonth from "./CultureMonth"
+import CultureMonth from "./CultureMonth";
 import ListViewIcon from "./ListViewIcon";
 import CodeNameBtn from "./CodeNameBtn";
-
 
 export default function CultureList() {
   const date = new Date();
@@ -25,7 +24,7 @@ export default function CultureList() {
 
   const [cultureList, setCultureList] = useState([]);
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/100/${codename}/ /${urlDate}`;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/500/${codename}/ /${urlDate}`;
   const [pageStyle, setPageStyle] = useState("grid");
 
   useEffect(() => {
@@ -41,7 +40,8 @@ export default function CultureList() {
         const lists = result.culturalEventInfo.row;
         const listCopy = [...lists];
         const dataSortList = API_SortFunc(listCopy);
-        setCultureList(dataSortList);
+        const filterList = API_FilterFunc(dataSortList);
+        setCultureList(filterList);
       });
   }, [urlDate, codename, pageStyle]);
 
@@ -103,10 +103,10 @@ export default function CultureList() {
             handleNextMonth={handleNextMonth}
             text={cultureList == null ? "공연정보가 없습니다" : ""}
           />
-          <ListViewIcon handlePageStyle={handlePageStyle}/>
+          <ListViewIcon handlePageStyle={handlePageStyle} />
         </div>
-        <CodeNameBtn handleSearchCodeName={handleSearchCodeName} /> 
-
+        <CodeNameBtn handleSearchCodeName={handleSearchCodeName} />
+        
         <div className={pageStyle == "grid" ? styles.gridBox : styles.listBox}>
           {cultureList.map((list, idx) => {
             return <CultureListItem key={idx} style={pageStyle} list={list} />;
