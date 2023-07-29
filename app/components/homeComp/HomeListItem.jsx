@@ -6,7 +6,7 @@ import { serviceKey,API_SortFunc, API_FilterFunc } from "@/app/util/utils";
 export default function HomeListItem({ codename }) {
   const [cultureList, setCultureList] = useState([]);
   const curDate = new Date().toISOString().split("T")[0];
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/30/
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/150/
   ${codename ? codename : " "}/ /${codename === null ? curDate : " "}`;
 
   useEffect(() => {
