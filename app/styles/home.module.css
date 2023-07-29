@@ -2,6 +2,7 @@
   width: 100%;
   height: 400px;
   position: relative;
+  margin-bottom: 40px;
 }
 .main .mainImgBox .mainText {
   position: absolute;
