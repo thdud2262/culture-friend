@@ -1,6 +1,7 @@
 .calendarBox {
   max-width: 1000px;
-  border: 1px solid red;
+  height: 1300px;
+  border: 1px solid white;
   font-family: "SUITE-Regular";
 }
 
@@ -9,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 35px auto 45px;
 }
 .calendarMonth button {
   margin: 10px;
@@ -18,9 +19,9 @@
   cursor: pointer;
 }
 .calendarMonth p {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
-  margin: 0 20px;
+  margin: 20px;
 }
 .days {
   display: flex;
@@ -30,11 +31,12 @@
 .days .day {
   width: 140px;
   height: 40px;
-  font-size: 20px;
-  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .days .day:first-child {
@@ -49,13 +51,14 @@
   grid-template-columns: repeat(7, 1fr);
 }
 .dates .date {
-  border: 1px solid lightgray;
-  border-left: none;  
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   max-width: 140px;
-  height: 100px;
+  height: 200px;
   padding: 8px;
   box-sizing: border-box;
+  margin: 2px 0;
+  border: 1px solid lightgray;
+  font-weight: 700;
 }
