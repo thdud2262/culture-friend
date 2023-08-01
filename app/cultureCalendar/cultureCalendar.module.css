@@ -1,0 +1,61 @@
+.calendarBox {
+  max-width: 1000px;
+  border: 1px solid red;
+  font-family: "SUITE-Regular";
+}
+
+.calendarMonth {
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.calendarMonth button {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.calendarMonth p {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 20px;
+}
+.days {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.days .day {
+  width: 140px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.days .day:first-child {
+  color: red;
+}
+
+.days .day:last-child {
+  color: blue;
+}
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.dates .date {
+  border: 1px solid lightgray;
+  border-left: none;  
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  max-width: 140px;
+  height: 100px;
+  padding: 8px;
+  box-sizing: border-box;
+}
