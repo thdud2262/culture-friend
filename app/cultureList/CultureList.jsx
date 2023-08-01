@@ -1,11 +1,14 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../styles/cultureList.module.css";
 import { v4 as uuidv4 } from "uuid";
-import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
-import { FiList, FiGrid } from "react-icons/fi";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
+// component_import
+import { API_FilterFunc, API_SortFunc } from "../util/utils";
+import CultureListItem from "./CultureListItem";
+import CultureMonth from "./CultureMonth";
+import ListViewIcon from "./ListViewIcon";
+import CodeNameBtn from "./CodeNameBtn";
 
 export default function CultureList() {
   const date = new Date();
@@ -14,7 +17,6 @@ export default function CultureList() {
     month: date.getMonth(),
   });
   const [codename, setCodename] = useState(" ");
-  const [title, setTitle] = useState(" ");
   const urlDate = `${curDate.year}-${String(curDate.month + 1).padStart(
     2,
     "0"
@@ -22,20 +24,8 @@ export default function CultureList() {
 
   const [cultureList, setCultureList] = useState([]);
   const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/10/${codename}/${title}/${urlDate}`;
+  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/500/${codename}/ /${urlDate}`;
   const [pageStyle, setPageStyle] = useState("grid");
-
-  // CODENAME 검색
-  const codenameKey = [
-    "전체",
-    "교육",
-    "연극",
-    "클래식",
-    "뮤지컬/오페라",
-    "콘서트",
-    "축제",
-    "전시/미술",
-  ];
 
   useEffect(() => {
     fetch(url, {
@@ -49,14 +39,11 @@ export default function CultureList() {
         }
         const lists = result.culturalEventInfo.row;
         const listCopy = [...lists];
-        const sortedList = listCopy.sort((a, b) => {
-          const dateA = new Date(a.DATE.split("~")[0]);
-          const dateB = new Date(b.DATE.split("~")[0]);
-          return dateA - dateB;
-        });
-        setCultureList(sortedList);
+        const dataSortList = API_SortFunc(listCopy);
+        const filterList = API_FilterFunc(dataSortList);
+        setCultureList(filterList);
       });
-  }, [urlDate, codename, title, pageStyle]);
+  }, [urlDate, codename, pageStyle]);
 
   const handlePrevMonth = () => {
     setCurDate((state) => {
@@ -90,23 +77,15 @@ export default function CultureList() {
   const handlePageStyle = (style) => {
     setPageStyle(style);
   };
+
   if (cultureList == null) {
     return (
-      <>
-        <div className={styles.cultureMonth}>
-          <button onClick={handlePrevMonth}>
-            <IoIosArrowBack />
-          </button>
-          <h1>
-            {curDate.year}년 &nbsp;
-            <span>{curDate.month + 1}</span>월의 공연 / 전시
-          </h1>
-          <button onClick={handleNextMonth}>
-            <IoIosArrowForward />
-          </button>
-        </div>
-        <div>공연 정보가 없습니다</div>
-      </>
+      <CultureMonth
+        curDate={curDate}
+        handlePrevMonth={handlePrevMonth}
+        handleNextMonth={handleNextMonth}
+        text={cultureList == null ? "공연정보가 없습니다" : ""}
+      />
     );
   }
 
@@ -118,101 +97,22 @@ export default function CultureList() {
     <>
       <div>
         <div className={styles.cultureNav}>
-          <div className={styles.cultureMonth}>
-            <button onClick={handlePrevMonth}>
-              <IoIosArrowBack />
-            </button>
-            <h1>
-              {curDate.year}년 &nbsp;
-              <span>{curDate.month + 1}</span>월의 공연 / 전시
-            </h1>
-            <button onClick={handleNextMonth}>
-              <IoIosArrowForward />
-            </button>
-          </div>
-          <div className={styles.gridIcon}>
-            <button onClick={() => handlePageStyle("list")}>
-              <FiList />
-            </button>
-            <button onClick={() => handlePageStyle("grid")}>
-              <FiGrid />
-            </button>
-            <Link
-              href="/cultureCalendar"
-              className={styles.navItem}
-              style={{ fontSize: "26px", color: "gray" }}
-            >
-              <FaRegCalendarAlt />
-            </Link>
-          </div>
+          <CultureMonth
+            curDate={curDate}
+            handlePrevMonth={handlePrevMonth}
+            handleNextMonth={handleNextMonth}
+            text={cultureList == null ? "공연정보가 없습니다" : ""}
+          />
+          <ListViewIcon handlePageStyle={handlePageStyle} />
         </div>
-        {codenameKey.map((c) => {
-          const uniqueId = uuidv4();
-          return (
-            <button key={uniqueId} onClick={() => handleSearchCodeName(c)}>
-              {c}
-            </button>
-          );
-        })}
-
-        <div className={pageStyle === "grid" ? styles.gridBox : styles.listBox}>
-          {cultureList.map((li) => {
-            const uniqueId = uuidv4();
-            const today = new Date().toISOString().split("T")[0];
-            const li_date = li.END_DATE.split(" ")[0];
-
-            if (pageStyle == "grid") {
-              return (
-                <div key={uniqueId} className={styles.list}>
-                  <img src={li.MAIN_IMG} />
-                  <button className={styles.likeIcon}>
-                    {/* <FaHeart /> */}
-                    <FaRegHeart />
-                  </button>
-                  <div
-                    onClick={() => {
-                      window.open(li.ORG_LINK, "_blank");
-                    }}
-                  >
-                    <p className={styles.codeName}>{li.CODENAME}
-                      <span style={{ color: "red", fontWeight:'700', fontSize:'12px' }}>{today > li_date ? " _ 공연 종료" : ""}</span>
-                    </p>
-                    <p className={styles.date}>{li.DATE}</p>
-                    <p className={styles.title}>{li.TITLE}</p>
-                    <p className={styles.place}>
-                      <span>공연 장소:</span> {li.PLACE}
-                    </p>
-                  </div>
-                </div>
-              );
-            } else if (pageStyle == "list") {
-              return (
-                <div key={uniqueId} className={styles.list}>
-                  <img src={li.MAIN_IMG} />
-                  <button className={styles.likeIcon}>
-                    {/* <FaHeart /> */}
-                    <FaRegHeart />
-                  </button>
-                  <div
-                    onClick={() => {
-                      window.open(li.ORG_LINK, "_blank");
-                    }}
-                  >
-                    <p className={styles.codeName}>{li.CODENAME}</p>
-                    <p className={styles.date}>{li.DATE}</p>
-                    <p className={styles.title}>{li.TITLE}</p>
-                    <p className={styles.place}>
-                      <span>공연 장소:</span> {li.PLACE}
-                    </p>
-                  </div>
-                </div>
-              );
-            }
+        <CodeNameBtn handleSearchCodeName={handleSearchCodeName} />
+        
+        <div className={pageStyle == "grid" ? styles.gridBox : styles.listBox}>
+          {cultureList.map((list, idx) => {
+            return <CultureListItem key={idx} style={pageStyle} list={list} />;
           })}
         </div>
       </div>
     </>
   );
 }
-
-// CODENAME에 따라 LIST를 다르게 보여줄 수 있다
