@@ -1,31 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "../styles/cultureList.module.css";
-import { v4 as uuidv4 } from "uuid";
-
+// util함수 import
+import { API_FilterFunc, API_SortFunc, serviceKey } from "../util/utils";
+import { useMonthNavigation } from "../util/useMonthNavigator";
 // component_import
-import { API_FilterFunc, API_SortFunc } from "../util/utils";
 import CultureListItem from "./CultureListItem";
 import CultureMonth from "./CultureMonth";
 import ListViewIcon from "./ListViewIcon";
 import CodeNameBtn from "./CodeNameBtn";
 
 export default function CultureList() {
-  const date = new Date();
-  const [curDate, setCurDate] = useState({
-    year: date.getFullYear(),
-    month: date.getMonth(),
-  });
+  const todayDate = new Date();
+  const { curDate, handlePrevMonth, handleNextMonth } = useMonthNavigation(todayDate);
+
   const [codename, setCodename] = useState(" ");
+  const [cultureList, setCultureList] = useState([]);
+  const [pageStyle, setPageStyle] = useState("grid");
+  
   const urlDate = `${curDate.year}-${String(curDate.month + 1).padStart(
     2,
     "0"
-  )}`;
-
-  const [cultureList, setCultureList] = useState([]);
-  const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
+    )}`;
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/500/${codename}/ /${urlDate}`;
-  const [pageStyle, setPageStyle] = useState("grid");
+    
 
   useEffect(() => {
     fetch(url, {
@@ -44,27 +42,6 @@ export default function CultureList() {
         setCultureList(filterList);
       });
   }, [urlDate, codename, pageStyle]);
-
-  const handlePrevMonth = () => {
-    setCurDate((state) => {
-      const prevMonth = state.month - 1;
-      const prevYear = state.year;
-      if (state.month < 1) {
-        return { ...state, month: 11, year: prevYear - 1 };
-      }
-      return { ...state, month: prevMonth };
-    });
-  };
-  const handleNextMonth = () => {
-    setCurDate((state) => {
-      const nextMonth = state.month + 1;
-      const nextYear = state.year;
-      if (state.month == 11) {
-        return { ...state, month: 0, year: nextYear + 1 };
-      }
-      return { ...state, month: nextMonth };
-    });
-  };
 
   const handleSearchCodeName = (c) => {
     if (c == "전체") {
