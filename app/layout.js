@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import styles from './styles/layout.module.css'
+import styles from '../app/components/layoutComp/layoutComp.module.css';
 import TopScrollBtn from "./components/layoutComp/TopScrollBtn";
 import FooterBar from "./components/layoutComp/FooterBar";
 import HeaderBar from "./components/layoutComp/HeaderBar";

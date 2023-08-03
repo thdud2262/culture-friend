@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/home.module.css";
+import styles from "./home.module.css";
 import { serviceKey,API_SortFunc, API_FilterFunc } from "@/app/util/utils";
 
 export default function HomeListItem({ codename }) {

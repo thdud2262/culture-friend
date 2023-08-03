@@ -1,10 +1,9 @@
-import styles from "./styles/home.module.css";
 import HomeList from "./components/homeComp/HomeList";
 import HomeCarousel from "./components/homeComp/HomeCarousel";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <HomeCarousel />
       <HomeList subTitle={"오늘! 공연/전시 정보"} codename={null} />
       <HomeList subTitle={"CLASSIC"} codename={"클래식"} />

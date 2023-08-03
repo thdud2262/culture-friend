@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import styles from "../styles/cultureMap.module.css";
+import styles from "./cultureMap.module.css";
 
 export default function CulturePlaceList() {
   const [placeList, setPlaceList] = useState([]);

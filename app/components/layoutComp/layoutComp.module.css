@@ -1,5 +1,12 @@
-/* header */
 
+/* content */
+.contents {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 180px;
+}
+
+/* header */
 .header {
   width: 100%;
   position: fixed;
@@ -67,8 +74,9 @@
 .footer {
   width: 100%;
   /* border-top: 1px solid teal; */
-  height: 150px;
-  padding: 20px 0;
+  /* height: 150px; */
+  margin-bottom: 20px;
+  padding: 20px 0 ;
   box-sizing: border-box;
 }
 .footer .footerBar {

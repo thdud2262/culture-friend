@@ -1,4 +1,4 @@
-import styles from "../styles/cultureList.module.css";
+import styles from "./cultureList.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
 

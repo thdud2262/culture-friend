@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../styles/cultureMap.module.css";
+import styles from "./cultureMap.module.css";
 
 export default function MapSearch() {
   const handleMapSearch = () => {

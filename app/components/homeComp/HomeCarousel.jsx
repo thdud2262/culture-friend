@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "../../styles/home.module.css";
+import styles from "./home.module.css";
 
 // util함수 import
 import {
