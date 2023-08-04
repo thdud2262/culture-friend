@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./cultureList.module.css";
 // util함수 import
 import { API_FilterFunc, API_SortFunc, serviceKey } from "../util/utils";
-import { useMonthNavigation } from "../util/useMonthNavigator";
+import { useMonthNavigation } from "../util/hooks/useMonthNavigator";
 // component_import
 import CultureListItem from "./CultureListItem";
 import CultureMonth from "./CultureMonth";
@@ -12,18 +12,18 @@ import CodeNameBtn from "./CodeNameBtn";
 
 export default function CultureList() {
   const todayDate = new Date();
-  const { curDate, handlePrevMonth, handleNextMonth } = useMonthNavigation(todayDate);
+  const { curDate, handlePrevMonth, handleNextMonth } =
+    useMonthNavigation(todayDate);
 
   const [codename, setCodename] = useState(" ");
   const [cultureList, setCultureList] = useState([]);
   const [pageStyle, setPageStyle] = useState("grid");
-  
+
   const urlDate = `${curDate.year}-${String(curDate.month + 1).padStart(
     2,
     "0"
-    )}`;
+  )}`;
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/500/${codename}/ /${urlDate}`;
-    
 
   useEffect(() => {
     fetch(url, {
@@ -83,7 +83,7 @@ export default function CultureList() {
           <ListViewIcon handlePageStyle={handlePageStyle} />
         </div>
         <CodeNameBtn handleSearchCodeName={handleSearchCodeName} />
-        
+
         <div className={pageStyle == "grid" ? styles.gridBox : styles.listBox}>
           {cultureList.map((list, idx) => {
             return <CultureListItem key={idx} style={pageStyle} list={list} />;
