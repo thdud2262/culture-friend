@@ -1,13 +1,10 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import styles from '../app/components/layoutComp/layoutComp.module.css';
+import styles from "../app/components/layoutComp/layoutComp.module.css";
 import TopScrollBtn from "./components/layoutComp/TopScrollBtn";
 import FooterBar from "./components/layoutComp/FooterBar";
 import HeaderBar from "./components/layoutComp/HeaderBar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -19,9 +16,10 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <HeaderBar username={session?.user.name}/>
+      <body>
+        <HeaderBar username={session?.user.name} />
         <div className={styles.contents}>{children}</div>
+        <div id="modal-root" />
         <FooterBar />
         <TopScrollBtn />
       </body>
