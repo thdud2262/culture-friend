@@ -5,6 +5,7 @@ import Link from "next/link";
 // util함수 import
 import { API_SortFunc, serviceKey } from "../util/utils";
 import { useMonthNavigation } from "../util/useMonthNavigator";
+import ExpandedViewText from "./ExpandedText";
 
 export default function Calendar() {
   const todayDate = new Date();
@@ -122,7 +123,7 @@ export default function Calendar() {
                         <>
                         <li key={idx} className={styles.calendarDataList}>
                           <Link href={data.ORG_LINK} target="_blank">
-                          {data.TITLE}
+                            <ExpandedViewText text={data.TITLE}/>
                           </Link>
                         </li>
                       </>
