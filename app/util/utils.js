@@ -1,5 +1,6 @@
 // ENV파일 경로
-export const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
+// export const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
+export const serviceKey = "6e4957636974686432346a6c614d7a";
 
 // API 데이터의 날짜순 정렬 함수
 const sortFunc = (data) =>
