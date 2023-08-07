@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
 import ExpandedViewText from "./ExpandedText";
-import styles from "./_modal.module.css";
+import styles from "./s_modal.module.css";
 
 export const Modal = ({ isOpen, onClose, data }) => {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -48,7 +48,10 @@ export const Modal = ({ isOpen, onClose, data }) => {
           <button className={styles.modalClose} onClick={onClose}>
             닫기
           </button>
-          <button className={styles.closeBtn} onClick={onClose}> X </button>
+          <button className={styles.closeBtn} onClick={onClose}>
+            {" "}
+            X{" "}
+          </button>
         </div>
       </div>
     ) : null,

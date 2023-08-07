@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
 import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
-import styles from "../styles/cultureList.module.css";
+import styles from "../cultureList/s_cultureList.module.css";
 
 export default function SearchList() {
   const params = useParams();

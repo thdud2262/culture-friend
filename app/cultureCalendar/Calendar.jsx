@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "./_cultureCalendar.module.css";
+import styles from "./s_cultureCalendar.module.css";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 
@@ -136,7 +136,7 @@ export default function Calendar() {
                     }
                   })}
                   {ele.API_calendarDataFilter.length > 4 ? (
-                    <button>더보기</button>
+                  <button onClick={()=>{handleClickMoreData(ele)}}>더보기</button>
                   ) : (
                     ""
                   )}
