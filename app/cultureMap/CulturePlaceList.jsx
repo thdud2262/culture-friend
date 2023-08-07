@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./s_cultureMap.module.css";
+import {serviceKey } from "../util/utils";
+
 
 export default function CulturePlaceList() {
   const [placeList, setPlaceList] = useState([]);
-  const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalSpaceInfo/1/10/`;
 
   useEffect(() => {

@@ -2,16 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
-
-import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
+import {serviceKey } from "../util/utils";
 import styles from "../cultureList/s_cultureList.module.css";
+import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
 
 export default function SearchList() {
   const params = useParams();
   const searchText = decodeURIComponent(params.text);
   const [resultList, setResulthList] = useState([]);
 
-  const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/150/ /${searchText}`;
 
   useEffect(() => {
