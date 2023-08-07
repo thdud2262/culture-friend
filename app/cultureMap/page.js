@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./s_cultureMap.module.css";
 import KakaoMapsPage from "./KakaoMapsPage";
-import MapSearch from "./mapSearch";
-import CulturePlaceList from "./culturePlaceList";
+import MapSearch from "./MapSearch";
+import CulturePlaceList from "./CulturePlaceList";
 
 export default function cultureMap() {
   return (
