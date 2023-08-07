@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "./cultureCalendar.module.css";
+import styles from "./_cultureCalendar.module.css";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 

@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react'
-import styles from './cultureCalendar.module.css'
+import styles from './_cultureCalendar.module.css'
 
 export default function ExpandedViewText({text}) {
   const [isExpanded, setIsExpanded] = useState(false);

@@ -2,9 +2,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
 import ExpandedViewText from "./ExpandedText";
-import styles from "./modal.module.css";
+import styles from "./_modal.module.css";
 
 export const Modal = ({ isOpen, onClose, data }) => {
   const [isBrowser, setIsBrowser] = useState(false);

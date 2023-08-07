@@ -1,6 +1,6 @@
 import React from "react";
 import CultureList from "./CultureList";
-import styles from "./cultureList.module.css";
+import styles from "./_cultureList.module.css";
 
 export default function cultureList() {
   return (

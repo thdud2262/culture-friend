@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "./cultureList.module.css";
+import styles from "./_cultureList.module.css";
 // util함수 import
 import { API_FilterFunc, API_SortFunc, serviceKey } from "../util/utils";
 import { useMonthNavigation } from "../util/hooks/useMonthNavigator";

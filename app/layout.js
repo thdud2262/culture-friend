@@ -1,7 +1,7 @@
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import styles from "../app/components/layoutComp/layoutComp.module.css";
+import styles from "../app/components/layoutComp/_layoutComp.module.css";
 import TopScrollBtn from "./components/layoutComp/TopScrollBtn";
 import FooterBar from "./components/layoutComp/FooterBar";
 import HeaderBar from "./components/layoutComp/HeaderBar";
