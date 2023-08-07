@@ -79,9 +79,8 @@ export default function Calendar() {
   };
 
   // 더보기 버튼 -> 모달 생성
-  const handleClickMoreData = (data) => {
-    // console.log(data);
-    setMoreData(data);
+  const handleClickMoreData = (moreData) => {
+    setMoreData(moreData);
     setIsModalOpen(true);
   };
 
@@ -131,7 +130,6 @@ export default function Calendar() {
                             <Link href={data.ORG_LINK} target="_blank">
                               {data.TITLE}
                             </Link>
-                            <button>자세히보기</button>
                           </li>
                         </React.Fragment>
                       );
@@ -163,14 +161,13 @@ export default function Calendar() {
                           <Link href={data.ORG_LINK} target="_blank">
                             {data.TITLE}
                           </Link>
-                          <button>자세히보기</button>
                         </li>
                       </React.Fragment>
                     );
                   }
                 })}
                 {ele.API_calendarDataFilter.length > 4 ? (
-                  <button>더보기</button>
+                  <button onClick={()=>{handleClickMoreData(ele)}}>더보기</button>
                 ) : (
                   ""
                 )}
@@ -180,13 +177,13 @@ export default function Calendar() {
           ) 
         })}
       </div>
-      {/* <Modal
+      <Modal
         isOpen={isModalOpen}
         onClose={() => {
           setIsModalOpen(false);
         }}
         data={moreData}
-      /> */}
+      />
     </div>
   );
 }
