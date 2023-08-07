@@ -1,3 +1,6 @@
+// ENV파일 경로
+export const serviceKey = process.env.NEXT_PUBLIC_SERVICEKEY;
+
 // API 데이터의 날짜순 정렬 함수
 const sortFunc = (data) =>
   data.sort((a, b) => {
@@ -28,7 +31,7 @@ export const API_WeekendFilterFunc = (data) => {
   const today = new Date();
   const nextWeek = new Date(today);
   nextWeek.setDate(today.getDate() + 20);
-  const nextWeekDay = nextWeek.toISOString().split('T')[0]
+  const nextWeekDay = nextWeek.toISOString().split("T")[0];
 
   const weekendFilterData = data.filter((item) => {
     const endDate = item.END_DATE.split(" ")[0];
