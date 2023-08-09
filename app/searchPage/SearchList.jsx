@@ -45,10 +45,11 @@ export default function SearchList() {
         const uniqueId = uuidv4();
         const today = new Date().toISOString().split("T")[0];
         const li_date = li.END_DATE.split(" ")[0];
-        
+
         return (
           <div key={uniqueId} className={styles.list}>
-            <img src={li.MAIN_IMG} />
+            {/* <img src={li.MAIN_IMG} /> */}
+            <img src="/image/ex1.jpg" />
             <button className={styles.likeIcon}>
               {/* <FaHeart /> */}
               <FaRegHeart />
@@ -64,7 +65,9 @@ export default function SearchList() {
               <p className={styles.place}>
                 <span>공연 장소:</span> {li.PLACE}
               </p>
-              <p style={{color:'red'}}>{today > li_date? "공연 종료" : ""}</p>
+              <p style={{ color: "red" }}>
+                {today > li_date ? "공연 종료" : ""}
+              </p>
             </div>
           </div>
         );
