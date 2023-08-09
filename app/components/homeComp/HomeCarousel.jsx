@@ -20,12 +20,14 @@ export default function HomeCarousel() {
   const [apiData, setApiData] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true)
 
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/150/`;
-
   // API호출
   useEffect(() => {
-    fetch(url, {
-      method: "GET",
+    fetch(`/api/post/data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 'serviceKey': serviceKey, 'type': 'carousel' }),
     })
       .then((res) => res.json())
       .then((result) => {
@@ -56,6 +58,7 @@ export default function HomeCarousel() {
   const handleNextBtn = () => {
     setCurrentSlide(currentSlide === apiData.length - 1 ? 0 : currentSlide + 1);
   };
+
   return (
     <>
       {apiData?.map((i, idx) => {
