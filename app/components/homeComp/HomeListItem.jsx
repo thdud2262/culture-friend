@@ -10,11 +10,29 @@ export default function HomeListItem({ codename }) {
   ${codename ? codename : " "}/ /${codename === null ? curDate : " "}`;
 
   useEffect(() => {
-    fetch(url, {
+    // fetch(url, {
+    //   method: "GET",
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     if (result.culturalEventInfo == undefined) {
+    //       setCultureList(null);
+    //       return;
+    //     }
+    //     const lists = result.culturalEventInfo.row;
+    //     const listCopy = [...lists];
+
+    //     const dataSortList = API_SortFunc(listCopy);
+    //     const dataFilterList = API_FilterFunc(dataSortList);
+
+    //     setCultureList(dataFilterList.slice(0, 6));
+    //   });
+    let res = fetch(`/api/post/data`, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((result) => {
+        // console.log(result)
         if (result.culturalEventInfo == undefined) {
           setCultureList(null);
           return;
@@ -35,8 +53,8 @@ export default function HomeListItem({ codename }) {
         return (
           <li key={idx} className={styles.list}>
             <a href={list.ORG_LINK} target="_blank">
-              {/* <img src={list.MAIN_IMG} /> */}
-              <img src="/image/ex1.jpg" />
+              <img src={list.MAIN_IMG} />
+              {/* <img src="/image/ex1.jpg" /> */}
               <p className={styles.listTitle}>{list.TITLE}</p>
               <p className={styles.listDate}>{list.DATE}</p>
               <p className={styles.listLocation}>{list.PLACE}</p>
