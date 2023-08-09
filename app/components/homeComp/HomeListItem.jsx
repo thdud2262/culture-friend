@@ -35,7 +35,8 @@ export default function HomeListItem({ codename }) {
         return (
           <li key={idx} className={styles.list}>
             <a href={list.ORG_LINK} target="_blank">
-              <img src={list.MAIN_IMG} />
+              {/* <img src={list.MAIN_IMG} /> */}
+              <img src="/image/ex1.jpg" />
               <p className={styles.listTitle}>{list.TITLE}</p>
               <p className={styles.listDate}>{list.DATE}</p>
               <p className={styles.listLocation}>{list.PLACE}</p>

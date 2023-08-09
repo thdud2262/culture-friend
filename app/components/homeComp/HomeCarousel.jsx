@@ -71,7 +71,8 @@ export default function HomeCarousel() {
             <button className={styles.autoPlayBtn} onClick={()=>{setIsPlaying((isPlaying)=> !isPlaying)}}>
               {isPlaying? <GiPauseButton/> :<FaPlay /> }
             </button>
-            <img src={i.MAIN_IMG} alt={i.PROGRAM} width={300} height={400} />
+            <img src="/image/ex1.jpg" />
+            {/* <img src={i.MAIN_IMG} alt={i.PROGRAM} width={300} height={400} /> */}
             <div className={styles.mainText}>
               <div>
                 <p>{i.TITLE}</p>
