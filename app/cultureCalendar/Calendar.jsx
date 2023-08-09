@@ -24,9 +24,14 @@ export default function Calendar() {
     "0"
   )}`;
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/50/ / /${urlDate}`;
+  
   useEffect(() => {
-    fetch(url, {
-      method: "GET",
+    fetch(`/api/post/data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 'serviceKey': serviceKey ,'urlDate': urlDate, 'type':'calendar'}),
     })
       .then((res) => res.json())
       .then((result) => {

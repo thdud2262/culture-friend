@@ -9,8 +9,7 @@ export default function CultureListItem({ list }) {
 
   return (
     <div key={uniqueId} className={styles.list}>
-      {/* <img src={list.MAIN_IMG} /> */}
-      <img src="/image/ex1.jpg" />
+      <img src={list.MAIN_IMG} />
       <button className={styles.likeIcon}>
         {/* <FaHeart /> */}
         <FaRegHeart />
