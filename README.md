@@ -8,8 +8,7 @@
 <br>
 
 ## 🍊 배포 링크 Hosting URL
-
-test
+https://culture-me.vercel.app/
 <br>
 <br>
 
