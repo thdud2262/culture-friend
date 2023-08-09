@@ -6,33 +6,17 @@ import { serviceKey,API_SortFunc, API_FilterFunc } from "@/app/util/utils";
 export default function HomeListItem({ codename }) {
   const [cultureList, setCultureList] = useState([]);
   const curDate = new Date().toISOString().split("T")[0];
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/150/
-  ${codename ? codename : " "}/ /${codename === null ? curDate : " "}`;
-
+  
   useEffect(() => {
-    // fetch(url, {
-    //   method: "GET",
-    // })
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     if (result.culturalEventInfo == undefined) {
-    //       setCultureList(null);
-    //       return;
-    //     }
-    //     const lists = result.culturalEventInfo.row;
-    //     const listCopy = [...lists];
-
-    //     const dataSortList = API_SortFunc(listCopy);
-    //     const dataFilterList = API_FilterFunc(dataSortList);
-
-    //     setCultureList(dataFilterList.slice(0, 6));
-    //   });
-    let res = fetch(`/api/post/data`, {
-      method: "GET",
+    fetch(`/api/post/data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 'codename': codename, 'curDate': curDate, 'serviceKey': serviceKey , 'type':'homeList'}),
     })
       .then((res) => res.json())
       .then((result) => {
-        // console.log(result)
         if (result.culturalEventInfo == undefined) {
           setCultureList(null);
           return;

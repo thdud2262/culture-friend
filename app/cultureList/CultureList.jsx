@@ -26,8 +26,12 @@ export default function CultureList() {
   const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/500/${codename}/ /${urlDate}`;
 
   useEffect(() => {
-    fetch(url, {
-      method: "GET",
+    fetch(`/api/post/data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 'codename': codename, 'urlDate': urlDate, 'serviceKey': serviceKey , 'type':'cultureList'}),
     })
       .then((res) => res.json())
       .then((result) => {
