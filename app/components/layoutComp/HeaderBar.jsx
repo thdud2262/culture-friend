@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./_layoutComp.module.css";
+import styles from "./s_layoutComp.module.css";
 import HeaderSearchBar from "./HeaderSearchBar";
 import LoginBtn from "./LoginBtn";
 

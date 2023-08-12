@@ -1,6 +1,6 @@
 "use client";
 import { signIn, signOut } from "next-auth/react";
-import styles from "./_layoutComp.module.css";
+import styles from "./s_layoutComp.module.css";
 
 export default function LoginBtn({ login, username }) {
   return (

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./home.module.css";
+import styles from "./s_home.module.css";
 
 // util함수 import
 import {
@@ -69,8 +69,6 @@ export default function HomeCarousel() {
             style={{ display: idx === currentSlide ? "block" : "none" }}
           >
             <p className={styles.mainSubText} >D-day <br/> 20일 공연 LIST</p>
-            {/* 리스트를 할까말까 고민중. */}
-
             <button className={styles.autoPlayBtn} onClick={()=>{setIsPlaying((isPlaying)=> !isPlaying)}}>
               {isPlaying? <GiPauseButton/> :<FaPlay /> }
             </button>

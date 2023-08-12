@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from './_layoutComp.module.css'
+import styles from "./s_layoutComp.module.css";
 
 export default function HeaderSearchBar() {
   const router = useRouter();

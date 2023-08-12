@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./home.module.css";
+import styles from "./s_home.module.css";
 import { serviceKey,API_SortFunc, API_FilterFunc } from "@/app/util/utils";
 
 export default function HomeListItem({ codename }) {
@@ -38,7 +38,6 @@ export default function HomeListItem({ codename }) {
           <li key={idx} className={styles.list}>
             <a href={list.ORG_LINK} target="_blank">
               <img src={list.MAIN_IMG} />
-              {/* <img src="/image/ex1.jpg" /> */}
               <p className={styles.listTitle}>{list.TITLE}</p>
               <p className={styles.listDate}>{list.DATE}</p>
               <p className={styles.listLocation}>{list.PLACE}</p>

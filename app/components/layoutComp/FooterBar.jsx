@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./_layoutComp.module.css";
+import styles from "./s_layoutComp.module.css";
 
 export default function FooterBar() {
   return (

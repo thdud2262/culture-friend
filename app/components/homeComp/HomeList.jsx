@@ -1,4 +1,4 @@
-import styles from "./home.module.css";
+import styles from "./s_home.module.css";
 import Link from "next/link";
 import HomeListItem from "./HomeListItem";
 
