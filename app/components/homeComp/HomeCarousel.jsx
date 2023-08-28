@@ -4,11 +4,7 @@ import Link from "next/link";
 import styles from "./s_home.module.css";
 
 // util함수 import
-import {
-  API_WeekendFilterFunc,
-  API_SortFunc,
-  serviceKey,
-} from "@/app/util/utils";
+import { serviceKey } from "@/app/util/utils";
 
 // ICON import
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -17,26 +13,25 @@ import { GiPauseButton } from "react-icons/gi";
 
 export default function HomeCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [apiData, setApiData] = useState([]);
+  const [fetchDataList, setFetchDataList] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true)
 
   // API호출
   useEffect(() => {
-    fetch(`/api/post/data`, {
+    fetch(`/api/data/home`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 'serviceKey': serviceKey, 'type': 'carousel' }),
+      body: JSON.stringify({ 
+        'serviceKey': serviceKey, 
+        'type': 'carousel' 
+      }),
     })
-      .then((res) => res.json())
-      .then((result) => {
-        if (!result.culturalEventInfo) return null;
-        const lists = result.culturalEventInfo.row;
-        const dataSortList = API_SortFunc(lists);
-        const endFilterList = API_WeekendFilterFunc(dataSortList);
-        setApiData(endFilterList);
-      });
+    .then((res) => res.json())
+    .then((result) => {
+      setFetchDataList(result)
+    });
   }, []);
 
   // Main_Carousel auto-play
@@ -45,23 +40,24 @@ export default function HomeCarousel() {
     if (isPlaying) {
       intervalId = setInterval(() => {
         setCurrentSlide((currentSlide) =>
-          currentSlide === apiData.length - 1 ? 0 : currentSlide + 1
+          currentSlide === fetchDataList.length - 1 ? 0 : currentSlide + 1
         );
       }, 2500);
     }
     return () => clearInterval(intervalId);
-  },[isPlaying, apiData.length ])
+  },[isPlaying, fetchDataList.length ])
 
   const handlePrevBtn = () => {
-    setCurrentSlide(currentSlide === 0 ? apiData.length - 1 : currentSlide - 1);
+    setCurrentSlide(currentSlide === 0 ? fetchDataList.length - 1 : currentSlide - 1);
   };
   const handleNextBtn = () => {
-    setCurrentSlide(currentSlide === apiData.length - 1 ? 0 : currentSlide + 1);
+    setCurrentSlide(currentSlide === fetchDataList.length - 1 ? 0 : currentSlide + 1);
   };
 
   return (
     <>
-      {apiData?.map((i, idx) => {
+  
+      {fetchDataList?.map((i, idx) => {
         return (
           <div
             key={idx}
