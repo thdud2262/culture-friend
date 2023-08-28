@@ -1,5 +1,10 @@
-import React from "react";
+import { Skeleton } from "@mui/material";
 
 export default function Loading() {
-  return <div>전체 로딩중</div>;
+  return (
+    <>
+      <Skeleton variant="rectangular" width={'100%'} height={420}/>
+      <Skeleton variant="rectangular" width={210} height={118} />
+    </>
+  );
 }
