@@ -23,15 +23,20 @@ export default function CultureList() {
     2,
     "0"
   )}`;
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/500/${codename}/ /${urlDate}`;
+
 
   useEffect(() => {
-    fetch(`/api/post/data`, {
+    fetch(`/api/data/list`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 'codename': codename, 'urlDate': urlDate, 'serviceKey': serviceKey , 'type':'cultureList'}),
+      body: JSON.stringify({
+        codename: codename,
+        urlDate: urlDate,
+        serviceKey: serviceKey,
+        type: "cultureList",
+      }),
     })
       .then((res) => res.json())
       .then((result) => {
@@ -68,10 +73,6 @@ export default function CultureList() {
         text={cultureList == null ? "공연정보가 없습니다" : ""}
       />
     );
-  }
-
-  if (cultureList.length < 1) {
-    return <div>로딩중</div>;
   }
 
   return (
