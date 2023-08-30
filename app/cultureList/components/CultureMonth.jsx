@@ -1,6 +1,6 @@
 "use client";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import styles from "./s_cultureList.module.css";
+import styles from "../s_cultureList.module.css";
 
 export default function CultureMonth({curDate, handlePrevMonth, handleNextMonth, text}) {
   return (

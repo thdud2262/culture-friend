@@ -23,15 +23,17 @@ export default function Calendar() {
     2,
     "0"
   )}`;
-  const url = `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/50/ / /${urlDate}`;
-  
   useEffect(() => {
-    fetch(`/api/post/data`, {
+    fetch(`/api/data/list`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 'serviceKey': serviceKey ,'urlDate': urlDate, 'type':'calendar'}),
+      body: JSON.stringify({
+        serviceKey: serviceKey,
+        urlDate: urlDate,
+        type: "calendar",
+      }),
     })
       .then((res) => res.json())
       .then((result) => {
@@ -116,12 +118,12 @@ export default function Calendar() {
             cellStyle.color = "blue";
           }
 
-          return ele.date == '01' ? (
+          return ele.date == "01" ? (
             <div
               key={dateIdx + 1}
               className={styles.dateBox}
               style={{ ...firstGridDateStyle }}
-            > 
+            >
               <p className={styles.date} style={ele.cellStyle}>
                 {ele.date}
               </p>
@@ -141,7 +143,13 @@ export default function Calendar() {
                     }
                   })}
                   {ele.API_calendarDataFilter.length > 4 ? (
-                  <button onClick={()=>{handleClickMoreData(ele)}}>더보기</button>
+                    <button
+                      onClick={() => {
+                        handleClickMoreData(ele);
+                      }}
+                    >
+                      더보기
+                    </button>
                   ) : (
                     ""
                   )}
@@ -149,37 +157,40 @@ export default function Calendar() {
               </div>
             </div>
           ) : (
-            <div
-            key={dateIdx + 1}
-            className={styles.dateBox}
-          > 
-            <p className={styles.date} style={ele.cellStyle}>
-              {ele.date}
-            </p>
-            <div className={styles.dateCultureList}>
-              <ul>
-                {ele.API_calendarDataFilter.map((data, idx) => {
-                  if (idx < 5) {
-                    return (
-                      <React.Fragment key={ele.uniqueIds[idx]}>
-                        <li className={styles.calendarDataList}>
-                          <Link href={data.ORG_LINK} target="_blank">
-                            {data.TITLE}
-                          </Link>
-                        </li>
-                      </React.Fragment>
-                    );
-                  }
-                })}
-                {ele.API_calendarDataFilter.length > 4 ? (
-                  <button onClick={()=>{handleClickMoreData(ele)}}>더보기</button>
-                ) : (
-                  ""
-                )}
-              </ul>
+            <div key={dateIdx + 1} className={styles.dateBox}>
+              <p className={styles.date} style={ele.cellStyle}>
+                {ele.date}
+              </p>
+              <div className={styles.dateCultureList}>
+                <ul>
+                  {ele.API_calendarDataFilter.map((data, idx) => {
+                    if (idx < 5) {
+                      return (
+                        <React.Fragment key={ele.uniqueIds[idx]}>
+                          <li className={styles.calendarDataList}>
+                            <Link href={data.ORG_LINK} target="_blank">
+                              {data.TITLE}
+                            </Link>
+                          </li>
+                        </React.Fragment>
+                      );
+                    }
+                  })}
+                  {ele.API_calendarDataFilter.length > 4 ? (
+                    <button
+                      onClick={() => {
+                        handleClickMoreData(ele);
+                      }}
+                    >
+                      더보기
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </ul>
+              </div>
             </div>
-          </div>
-          ) 
+          );
         })}
       </div>
       <Modal

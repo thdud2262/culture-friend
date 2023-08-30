@@ -24,7 +24,6 @@ export default function CodeNameBtn({handleSearchCodeName}) {
           </button>
         );
       })}
-      <button>현재 상영중인 공연만 보기</button>
     </div>
   );
 }
