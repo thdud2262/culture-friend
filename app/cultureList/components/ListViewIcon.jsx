@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import styles from "./s_cultureList.module.css";
+import styles from "../s_cultureList.module.css";
 
 import { FiList, FiGrid } from "react-icons/fi";
 import { FaRegCalendarAlt } from "react-icons/fa";

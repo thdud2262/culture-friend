@@ -1,14 +1,12 @@
-import styles from "./s_cultureList.module.css";
-import { v4 as uuidv4 } from "uuid";
+'use client'
+import styles from "../s_cultureList.module.css";
 import { FaHeart, FaRegHeart, FaRegCalendarAlt } from "react-icons/fa";
 
 export default function CultureListItem({ list }) {
-  const uniqueId = uuidv4();
   const today = new Date().toISOString().split("T")[0];
-  const li_date = list.END_DATE.split(" ")[0];
 
   return (
-    <div key={uniqueId} className={styles.list}>
+    <div className={styles.list}>
       <img src={list.MAIN_IMG} />
       <button className={styles.likeIcon}>
         {/* <FaHeart /> */}
@@ -21,14 +19,8 @@ export default function CultureListItem({ list }) {
       >
         <p className={styles.codeName}>
           {list.CODENAME}
-          <span
-            style={{
-              color: "red",
-              fontWeight: "700",
-              fontSize: "12px",
-            }}
-          >
-            {today > li_date ? " _ 공연 종료" : ""}
+          <span className={styles.endDate}>
+            {today > (list.END_DATE.split(" ")[0]) ? " _ 공연 종료" : ""}
           </span>
         </p>
         <p className={styles.date}>{list.DATE}</p>
@@ -38,5 +30,5 @@ export default function CultureListItem({ list }) {
         </p>
       </div>
     </div>
-  );
+  )
 }
