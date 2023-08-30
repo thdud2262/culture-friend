@@ -3,7 +3,6 @@ import fetch from "node-fetch";
 
 export default async function handler(req, res) {
   const { curDate, codename, serviceKey, type } = req.body;
-
   const API_URL =
     type == "homeList"
       ? `http://openapi.seoul.go.kr:8088/${serviceKey}/json/culturalEventInfo/1/50/${
@@ -14,7 +13,7 @@ export default async function handler(req, res) {
   await fetch(API_URL)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("API request failed");
+        throw new Error("API request failed --- fetch 요청실패 ");
       }
       return response.json();
     })
@@ -24,7 +23,7 @@ export default async function handler(req, res) {
 
       const dataSortList = API_SortFunc(listCopy);
       const dataFilterList = API_FilterFunc(dataSortList);
-      const dataResult = dataFilterList.slice(0, 6)
+      const dataResult = dataFilterList.slice(0, 6);
 
       return res.status(200).json(dataResult);
     });

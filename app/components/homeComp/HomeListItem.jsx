@@ -1,32 +1,29 @@
-'use client'
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import styles from "./s_home.module.css";
-import { serviceKey } from "@/app/util/utils";
-import { Skeleton } from "@mui/material";
-
+import useHomeDateFetch from "../../util/hooks/useHomeDataFetch";
 
 export default function HomeListItem({ codename }) {
-  const [ fetchDataList, setFetchDataList ] = useState([])
   const curDate = new Date().toISOString().split("T")[0];
+  const type = "homeList";
+  const fetchDataList = useHomeDateFetch(codename, curDate, type);
 
-  useEffect (()=>{
-    const response = fetch(`/api/data/home`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        codename: codename,
-        curDate: curDate,
-        serviceKey: serviceKey,
-        type: "homeList",
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setFetchDataList(result)
-      });
-  },[])
+  if (!fetchDataList) {
+    const divArray = Array.from({ length: 6 }, (_, index) => index);
+    return (
+      <div className={styles.listBox}>
+        {divArray.map((item, index) => (
+          <div
+            key={index}
+            className={styles.list}
+            style={{ border: "3px solid red" }}
+          >
+            -- list Loading --
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <ul className={styles.listBox}>
