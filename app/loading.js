@@ -1,23 +1,5 @@
-import { CircularProgress } from "@mui/material";
+import styles from "./components/homeComp/s_home.module.css";
 
 export default function Loading() {
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        backgroundColor:'#eee',
-      }}
-    >
-      <p 
-        style={{ 
-          fontSize:'100px', 
-          color:'white', 
-          fontWeight:'700'
-        }}> 
-        loading
-      </p>
-      <CircularProgress />
-    </div>
-  );
+  <p>로딩중</p>;
 }

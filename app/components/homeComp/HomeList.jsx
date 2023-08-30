@@ -1,5 +1,4 @@
 import styles from "./s_home.module.css";
-import Link from "next/link";
 import HomeListItem from "./HomeListItem";
 
 export default function HomeList({ subTitle, codename }) {
