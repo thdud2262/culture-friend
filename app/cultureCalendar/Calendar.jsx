@@ -37,9 +37,10 @@ export default function Calendar() {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (!result.culturalEventInfo) return null;
-        const lists = result.culturalEventInfo.row;
-        const dataSortList = API_SortFunc(lists);
+        console.log(result);
+        if (!result) return null;
+        const dataSortList = API_SortFunc(result);
+        console.log(dataSortList);
         setApiData(dataSortList);
       });
   }, [urlDate]);
